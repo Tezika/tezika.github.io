@@ -3,17 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tezika</title>
+  <title>cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物 | Tezika</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tezika">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="一、简介 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
+
+二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面  &amp;#160;&amp;#160;&amp;#160;&amp;#160;首先建好一个cocos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物">
+<meta property="og:url" content="http://yoursite.com/2015/02/12/cocos_teach_2/index.html">
 <meta property="og:site_name" content="Tezika">
-<meta property="og:description">
+<meta property="og:description" content="一、简介 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
+
+二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面  &amp;#160;&amp;#160;&amp;#160;&amp;#160;首先建好一个cocos">
+<meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_42eec0c9335cc00.png">
+<meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_046f71b7df79e40.png">
+<meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_42a35dc4b3e8e8c.png">
+<meta property="og:updated_time" content="2015-07-28T14:35:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tezika">
-<meta name="twitter:description">
+<meta name="twitter:title" content="cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物">
+<meta name="twitter:description" content="一、简介 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
+
+二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面  &amp;#160;&amp;#160;&amp;#160;&amp;#160;首先建好一个cocos">
   
     <link rel="alternative" href="/atom.xml" title="Tezika" type="application/atom+xml">
   
@@ -186,68 +196,7 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/28/hello-world/" class="article-date">
-  	<time datetime="2015-07-28T03:26:04.000Z" itemprop="datePublished">2015-07-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/28/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-cocos_teach_2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-cocos_teach_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/02/12/cocos_teach_2/" class="article-date">
@@ -263,12 +212,19 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/12/cocos_teach_2/">cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物</a>
+    <h1 class="article-title" itemprop="name">
+      cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -302,96 +258,71 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-cocos2d_teach_1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/04/cocos2d_teach_1/" class="article-date">
-  	<time datetime="2015-02-04T13:45:58.000Z" itemprop="datePublished">2015-02-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+<nav id="article-nav">
+  
+    <a href="/2015/07/28/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
         
+          Hello World
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/04/cocos2d_teach_1/">cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(一) 简介</a>
-    </h1>
   
+    <a href="/2015/02/04/cocos2d_teach_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(一) 简介</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一、简介">一、简介</h1><p> &#160;&#160;&#160;&#160; 本人死宅大学僧一枚，热爱游戏开发，最近正在学习cocos2d-x和cocosstudio，撸了一个类似《围住神经猫》的游戏DEMO，《Rabbit Escape》。因为看到论坛上好像没有相关的教程，所以我想把这个DEMO教程分享出来和大家交流。因为本人是主程序，所以美工资源就是来自本站另外一个cococstudio教程，传送门:<a href="http://cn.cocos2d-x.org/tutorial/show?id=1651" target="_blank" rel="external">http://cn.cocos2d-x.org/tutorial/show?id=1651</a>（有兴趣的童鞋可以看下）</p>
-<hr>
-<h1 id="二、开发环境">二、开发环境</h1><ul>
-<li><strong>cocos2d-x 3.3</strong>  </li>
-<li><strong>cocosstudio 2.06</strong>  </li>
-<li><strong>Xcode6</strong></li>
-</ul>
-<hr>
-<h1 id="三、游戏截图">三、游戏截图</h1><p>   <img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_0005bf42740f229.png?ra=0.4133066611830145 =200x" alt=""> <img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_34f83b4eee59bec.png?ra=0.13436963269487023 =250x" alt=""><img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_0f0d9e430ec0bdc.png?ra=0.962736047571525 =250x" alt=""></p>
-<hr>
-<h1 id="四、项目截图">四、项目截图</h1><p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_a3976def48a53f5.png?ra=0.10107129951938987" alt="">  </p>
-<h1 id="五、最后说两句">五、最后说两句</h1><ul>
-<li><strong>本Demo仅供交流，请勿用于商业开发</strong> </li>
-<li><strong>该教程针对于有一定cocos2d-x基础的童鞋（所以类似于怎么建项目，以及scene,layer,node这些基本概念是不会介绍）。</strong></li>
-<li><p><strong>因为开发使用机器系统为mac，所以上传的解压文件中包括源项目文件proj.ios_mac,Classes,Resources文件夹以及cocosstudio的项目文件夹Rabbit。 使用mac的童鞋:直接新建一个项目复制proj.ios_mac,Classes,Resources文件夹到项目中覆盖掉原来的，打开proj.ios_mac中的Xcode文件编译即可。使用windows的童鞋:需要打开项目中pro.win32进行编译。</strong>  </p>
-</li>
-<li><p><strong>附件地址：<a href="http://pan.baidu.com/s/1c02axGW" target="_blank" rel="external">http://pan.baidu.com/s/1c02axGW</a>, 密码： twsf</strong></p>
-</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
 
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="cocos_teach_2" data-title="cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物" data-url="http://yoursite.com/2015/02/12/cocos_teach_2/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
 
-
-  
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -415,8 +346,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
