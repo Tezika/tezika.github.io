@@ -3,25 +3,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物 | Tezika</title>
+  <title>Cocos小游戏《Rabbit Escape》教程(二) 游戏界面和障碍物 | Tezika</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、简介 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
+  <meta name="description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
 
 二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面  &amp;#160;&amp;#160;&amp;#160;&amp;#160;首先建好一个cocos">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物">
+<meta property="og:title" content="Cocos小游戏《Rabbit Escape》教程(二) 游戏界面和障碍物">
 <meta property="og:url" content="http://yoursite.com/2015/02/12/cocos_teach_2/index.html">
 <meta property="og:site_name" content="Tezika">
-<meta property="og:description" content="一、简介 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
+<meta property="og:description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
 
 二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面  &amp;#160;&amp;#160;&amp;#160;&amp;#160;首先建好一个cocos">
 <meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_42eec0c9335cc00.png">
 <meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_046f71b7df79e40.png">
 <meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_42a35dc4b3e8e8c.png">
-<meta property="og:updated_time" content="2015-07-28T14:35:18.000Z">
+<meta property="og:updated_time" content="2015-07-29T01:42:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物">
-<meta name="twitter:description" content="一、简介 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
+<meta name="twitter:title" content="Cocos小游戏《Rabbit Escape》教程(二) 游戏界面和障碍物">
+<meta name="twitter:description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       
 
 二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面  &amp;#160;&amp;#160;&amp;#160;&amp;#160;首先建好一个cocos">
   
@@ -40,7 +40,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="null" class="js-avatar">
+			<img lazy-src="https://avatars0.githubusercontent.com/u/7657467?v=3&amp;s=460" class="js-avatar">
 			
 		</a>
 
@@ -48,6 +48,8 @@
 		  <h1 class="header-author"><a href="/">Tezika</a></h1>
 		</hgroup>
 
+		
+		<p class="header-subtitle">果粉，ios开发，游戏开发，矮矬丑基佬技术宅一枚~</p>
 		
 
 		
@@ -120,7 +122,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/cocos2d-x/" style="font-size: 10px;">cocos2d-x</a> <a href="/tags/开发教程/" style="font-size: 10px;">开发教程</a>
 					</div>
 				</section>
 				
@@ -149,7 +151,7 @@
 				
 				<section class="switch-part switch-part4">
 				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+					<div id="js-aboutme">一个做游戏的土屌丝。</div>
 				</section>
 				
 			</div>
@@ -166,11 +168,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img lazy-src="null" class="js-avatar">
+				<img lazy-src="https://avatars0.githubusercontent.com/u/7657467?v=3&amp;s=460" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Tezika</h1>
 			</hgroup>
+			
+			<p class="header-subtitle">果粉，ios开发，游戏开发，矮矬丑基佬技术宅一枚~</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -213,7 +217,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物
+      Cocos小游戏《Rabbit Escape》教程(二) 游戏界面和障碍物
     </h1>
   
 
@@ -221,6 +225,10 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocos2d-x/">cocos2d-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发教程/">开发教程</a></li></ul>
+	</div>
+
         
 
         <div class="clearfix"></div>
@@ -229,7 +237,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、简介">一、简介</h1><p> &#160;&#160;&#160;&#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       </p>
+        <h1 id="一、前言">一、前言</h1><p> &#160;&#160;&#160;&#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       </p>
 <hr>
 <h1 id="二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面">二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面</h1><p>  &#160;&#160;&#160;&#160;首先建好一个cocos2d-x新项目，用cocosstudio2打开附件中的Rabbit资源文件Rabbit.ccs，UI界面我早已给大家设计好。<br>  <img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_42eec0c9335cc00.png" alt=""><br>  &#160;&#160;&#160;&#160;主要关注一下，节点树结构。因为会和等下的程序中的调用有很大的联系。然后将文件夹res的所有资源添加到新项目的Resources中(是Resources,而不是其中的res,这样操作主要是考虑到不用设置路径)。然后，来撸代码 !<br>&#160;&#160;&#160;&#160;修改后的HelloWorld.h<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifndef __HELLOWORLD_SCENE_H__</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> __HELLOWORLD_SCENE_H__</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "cocos2d.h"</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> HelloWorld : <span class="keyword">public</span> cocos2d::Layer</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// there's no 'id' in cpp, so we recommend returning the class instance pointer</span></span><br><span class="line">    <span class="keyword">static</span> cocos2d::Scene* createScene();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// a selector callback</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// implement the "static create()" method manually</span></span><br><span class="line">    CREATE_FUNC(HelloWorld);</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">onTouchBeganCallBack</span><span class="params">(cocos2d::Touch* t,cocos2d::Event* event)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//存放所有子节点</span></span><br><span class="line">    Node* m_pNodes;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//存放兔子的节点</span></span><br><span class="line">    Node* m_pNode_rabbit;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//存放障碍的节点的容器</span></span><br><span class="line">    cocos2d::Vector&lt;Node* &gt; m_pNodes_obstacle;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span> <span class="comment">// __HELLOWORLD_SCENE_H__</span></span></span><br></pre></td></tr></table></figure></p>
 <p>&#160;&#160;&#160;&#160;HelloWorld.cpp，这里我只截取了重要的init函数：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// on "init" you need to initialize your instance</span></span><br><span class="line"><span class="keyword">bool</span> HelloWorld::init()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//////////////////////////////</span></span><br><span class="line">    <span class="comment">// 1. super init first</span></span><br><span class="line">    <span class="keyword">if</span> ( !Layer::init() )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取和添加场景节点</span></span><br><span class="line">    <span class="keyword">auto</span> pNode_scene = CSLoader::createNode(<span class="string">"MainScene.csb"</span>);</span><br><span class="line">    <span class="keyword">this</span>-&gt;addChild(pNode_scene);</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">    <span class="comment">//获取所有子节点</span></span><br><span class="line">    m_pNodes= pNode_scene-&gt;getChildByName(<span class="string">"Sprite_bg"</span>);</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//分别的到兔子和障碍节点</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it = m_pNodes-&gt;getChildren().begin(); it!=m_pNodes-&gt;getChildren().end(); it++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((*it)-&gt;getName()==<span class="string">"Sprite_Rabbit"</span>) &#123;</span><br><span class="line">            m_pNode_rabbit = (*it);</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            m_pNodes_obstacle.pushBack((*it));</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -263,9 +271,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2015/02/26/cocos_teach_3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Cocos小游戏《Rabbit Escape》教程(三) 让兔子动起来
+        
+      </div>
+    </a>
+  
   
     <a href="/2015/02/04/cocos2d_teach_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(一) 简介</div>
+      <div class="article-nav-title">Cocos小游戏《Rabbit Escape》教程(一) 简介</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -294,7 +311,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="cocos_teach_2" data-title="cocos2d-x制作类神经猫三消游戏《Rabbit Escape》的教程(二) 搭建游戏界面和添加障碍物" data-url="http://yoursite.com/2015/02/12/cocos_teach_2/"></div>
+	<div class="ds-thread" data-thread-key="cocos_teach_2" data-title="Cocos小游戏《Rabbit Escape》教程(二) 游戏界面和障碍物" data-url="http://yoursite.com/2015/02/12/cocos_teach_2/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
