@@ -17,7 +17,7 @@
 二、GameCtrl类中添加游戏的成功和失败判定，积分管理。&amp;#160;&amp;#160;&amp;#160;&amp;#160;关于游戏的成功和失败判定，首先我们需要在头文件中添加相应的成员函数。12345public:">
 <meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_c4ba0c7af9e05fb.png?ra=0.19033564743585885">
 <meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_62ddc418c6d1020.png?ra=0.21180030005052686">
-<meta property="og:updated_time" content="2015-07-29T04:25:36.000Z">
+<meta property="og:updated_time" content="2015-07-29T09:50:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos小游戏《Rabbit Escape》教程(五) 完成游戏">
 <meta name="twitter:description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160;上一次,我们已经解决了游戏中的核心问题如何实现兔子的寻路移动。但是我们还没有添加游戏的成功失败判断和积分的管理，这次教程我们来完善它。
@@ -269,7 +269,7 @@
 <p>&#160;&#160;&#160;&#160;没事，我们来给它在app类的初始化方法中添加设置随机种子的函数，让它变成个“真随机”。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//set rand</span></span><br><span class="line">    srand(time(NULL));</span><br></pre></td></tr></table></figure></p>
 <p>&#160;&#160;&#160;&#160;然后，需改一下生成随机障碍的部分，让它每次生成不同数目的障碍。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> NUM_INITSTONE = <span class="number">8</span>; <span class="comment">//至少8个障碍</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> NUM_DEATALSTONE = <span class="number">4</span>; <span class="comment">//变化的障碍数</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> HelloWorld::onEnter()&#123;</span><br><span class="line">    Layer::onEnter();</span><br><span class="line">    <span class="comment">//生成随机的障碍</span></span><br><span class="line">    <span class="keyword">this</span>-&gt;setRandStones(NUM_INITSTONE+CCRANDOM_0_1()*NUM_DEATALSTONE);</span><br><span class="line">    <span class="comment">//设置UI上面Text</span></span><br><span class="line">    <span class="keyword">this</span>-&gt;setText(m_pText_curStep,m_ctrl-&gt;getStep());</span><br><span class="line">    <span class="keyword">this</span>-&gt;setText(m_pText_bestStep,UserDefault::getInstance()-&gt;getIntegerForKey(STR_BEST.c_str()));</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>&#160;&#160;&#160;&#160;Duang~~~,我们的《Rabbit Escape》就算完成了，赶快去抓兔子吧。</p>
-<p>&#160;&#160;&#160;&#160;iphon真机测试DEMO演示视频:</p>
+<p>&#160;&#160;&#160;&#160;iphone真机测试DEMO演示视频:</p>
 <p><iframe height="498" width="510" src="http://player.youku.com/embed/XMTI5NTI2Nzg5Mg==" frameborder="0" allowfullscreen></iframe></p>
 <hr>
 <h1 id="五、最后说几句">五、最后说几句</h1><ul>
