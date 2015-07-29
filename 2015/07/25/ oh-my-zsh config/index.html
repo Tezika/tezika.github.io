@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mac下oh-my-zsh的配置，shell也要浪一点 | Tezika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、zsh shenmegui?&amp;#160;&amp;#160;&amp;#160;&amp;#160;使用mac的话如果不用Terminal的话，那就真的ooxx的话。但是当你代开terminal的时候看到这个bash是否会觉得要吐的赶脚呢？&amp;#160;&amp;#160;&amp;#160;&amp;#160;是否有种想给它换点料的赶脚呢？just like this。。。  
+&amp;#160;&amp;#160;&amp;#160;&amp;#160;是不是绝的突然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac下oh-my-zsh的配置，shell也要浪一点">
+<meta property="og:url" content="http://yoursite.com/2015/07/25/ oh-my-zsh config/index.html">
+<meta property="og:site_name" content="Tezika">
+<meta property="og:description" content="一、zsh shenmegui?&amp;#160;&amp;#160;&amp;#160;&amp;#160;使用mac的话如果不用Terminal的话，那就真的ooxx的话。但是当你代开terminal的时候看到这个bash是否会觉得要吐的赶脚呢？&amp;#160;&amp;#160;&amp;#160;&amp;#160;是否有种想给它换点料的赶脚呢？just like this。。。  
+&amp;#160;&amp;#160;&amp;#160;&amp;#160;是不是绝的突然">
+<meta property="og:image" content="http://m1.yea.im/1Cl.png">
+<meta property="og:image" content="http://m1.yea.im/1Cn.png">
+<meta property="og:updated_time" content="2015-07-29T11:24:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac下oh-my-zsh的配置，shell也要浪一点">
+<meta name="twitter:description" content="一、zsh shenmegui?&amp;#160;&amp;#160;&amp;#160;&amp;#160;使用mac的话如果不用Terminal的话，那就真的ooxx的话。但是当你代开terminal的时候看到这个bash是否会觉得要吐的赶脚呢？&amp;#160;&amp;#160;&amp;#160;&amp;#160;是否有种想给它换点料的赶脚呢？just like this。。。  
+&amp;#160;&amp;#160;&amp;#160;&amp;#160;是不是绝的突然">
+  
+    <link rel="alternative" href="/atom.xml" title="Tezika" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars0.githubusercontent.com/u/7657467?v=3&amp;s=460" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tezika</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">果粉，ios开发，游戏开发，矮矬丑基佬技术宅一枚~</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Tezika" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/2970804137/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhou-feng-kai-49" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/cocos2d-x/" style="font-size: 20px;">cocos2d-x</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/开发教程/" style="font-size: 20px;">开发教程</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.cocoachina.com/">CocoaChina</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.zhihu.com/">知乎</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://cn.cocos2d-x.org/">Cocos</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.indieace.com/portal.php">IndieAce</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">一个奋斗在游戏设计路上的小菜鸟，个人作品有《T Choose》，《2048Snake》和《Rabbit Escape》等。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Tezika</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars0.githubusercontent.com/u/7657467?v=3&amp;s=460" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Tezika</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">果粉，ios开发，游戏开发，矮矬丑基佬技术宅一枚~</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Tezika" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/2970804137/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhou-feng-kai-49" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post- oh-my-zsh config" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/25/ oh-my-zsh config/" class="article-date">
+  	<time datetime="2015-07-25T10:14:25.000Z" itemprop="datePublished">2015-07-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mac下oh-my-zsh的配置，shell也要浪一点
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zsh/">zsh</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、zsh_shenmegui?">一、zsh shenmegui?</h1><p>&#160;&#160;&#160;&#160;使用mac的话如果不用Terminal的话，那就真的ooxx的话。但是当你代开terminal的时候看到这个bash是否会觉得要吐的赶脚呢？<br><img src="http://m1.yea.im/1Cl.png" alt=""><br>&#160;&#160;&#160;&#160;是否有种想给它换点料的赶脚呢？just like this。。。  </p>
+<p><img src="http://m1.yea.im/1Cn.png" alt=""><br>&#160;&#160;&#160;&#160;是不是绝的突然对shell就充满了基情。</p>
+<p>&#160;&#160;&#160;&#160;其实如果要达到这种效果就必须说下zsh。</p>
+<blockquote>
+<p>Linux/Unix提供了很多种Shell，为毛要这么多Shell？难道用来炒着吃么？那我问你，你同类型的衣服怎么有那么多件？花色，质地还不一样。写程序比买衣服复杂多了，而且程序员往往负责把复杂的事情搞简单，简单的事情搞复杂。牛程序员看到不爽的Shell，就会自己重新写一套，慢慢形成了一些标准，常用的Shell有这么几种，sh、bash、csh等，想知道你的系统有几种shell，可以通过以下命令查看：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shells</span><br></pre></td></tr></table></figure></p>
+<p>显示如下：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash</span><br><span class="line">/bin/csh</span><br><span class="line">/bin/ksh</span><br><span class="line">/bin/sh</span><br><span class="line">/bin/tcsh</span><br><span class="line">/bin/zsh</span><br></pre></td></tr></table></figure></p>
+<p>&#160;&#160;&#160;&#160;在 Linux 里执行这个命令和 Mac 略有不同，你会发现 Mac 多了一个 zsh，也就是说 OS X 系统预装了个 zsh，这是个神马 Shell 呢？<br>&#160;&#160;&#160;&#160;常用的 Linux 系统和 OS X 系统的默认 Shell 都是 bash，但是真正强大的 Shell 是深藏不露的 zsh， 这货绝对是马车中的跑车，跑车中的飞行车，史称『终极 Shell』，但是由于配置过于复杂，所以初期无人问津，很多人跑过来看看 zsh 的配置指南，什么都不说转身就走了。直到有一天，国外有个穷极无聊的程序员开发出了一个能够让你快速上手的zsh项目，叫做「oh my zsh」，Github 网址是：<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a>。这玩意就像「X天叫你学会 C++」系列，可以让你神功速成，而且是真的。  </p>
+</blockquote>
+<p>&#160;&#160;&#160;&#160;以上摘自知乎专栏关于zsh的介绍<a href="http://zhuanlan.zhihu.com/mactalk/19556676" target="_blank" rel="external">http://zhuanlan.zhihu.com/mactalk/19556676</a>，是不是突然觉得很拉风，Mac程序狗们有没有心动。</p>
+<hr>
+<h1 id="二、how_to_config_it">二、how to config it</h1><ul>
+<li><strong>首先要保证你的电脑装了git(好废话，mac预装了)，然后ssh配置ok,反正保证你能从Github克隆代(xiao)码(dian)库(ying)下来~</strong>  </li>
+<li><strong>官方其实提供了两种安装方式，一种是：</strong>  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>or<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh</span><br></pre></td></tr></table></figure></p>
+<p>他们都叫它自动安装，但是不怎么推荐，因为Github有点被墙，这样子玩如果你不搞个vpn估计还是有得你等了。<br>还有一种是:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure></p>
+<p>比较推荐手动安装使用ssh.git，这样下载速度有保障，记得敲完命令，要不要被坑哭。  </p>
+<ul>
+<li><strong>最后还有一步就是把你bash更换成zsh。</strong> </li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh <span class="operator">-s</span> /bin/zsh</span><br></pre></td></tr></table></figure>
+<p>一切顺利的话重启你的terminal就可以看到oh-my-zsh了:)!</p>
+<hr>
+<h1 id="三、Custom_it">三、Custom it</h1><p>&#160;&#160;&#160;&#160;最后来讲讲优化它，这里只讲如何更换主题，首先回到根目录。然后使用<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .zshrc</span><br></pre></td></tr></table></figure></p>
+<p>&#160;&#160;&#160;&#160;进行编辑,更改其中的主题为你想要的名字。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"cloud"</span></span><br></pre></td></tr></table></figure></p>
+<p>&#160;&#160;&#160;&#160;官方<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh/wiki/Themes</a>提供了许多包含的主题给你选择。<strong>注意更换为相应的名字就行，如果需要使用额外新的主题可以将theme进行配置后更换使用</strong>，最后再搭配合适的背景色，就可以初步打造一款属于你的zsh了。<br>&#160;&#160;&#160;&#160;其实oh-my-zsh还可以做的很多，比如更改其中的图标，写写自己的theme,以及config plugins等等。。。有兴趣或者蛋疼了不妨fork一下，然后写写属于自己的东西，pull成功后还有机会获得他们赠送的T-Shirt哦。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/02/27/cocos_teach_5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cocos小游戏《Rabbit Escape》教程(五) 完成游戏</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key=" oh-my-zsh config" data-title="Mac下oh-my-zsh的配置，shell也要浪一点" data-url="http://yoursite.com/2015/07/25/ oh-my-zsh config/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Tezika
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
