@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Cocos小游戏《Rabbit Escape》教程(四) A星寻路算法的实现 | Tezika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160; 上一次我们创建游戏逻辑层，并且让它和UI层联系，让兔子能够实现移动。但是实现的移动都是简单的向上方向，这次的话我们要让兔子变“聪明”起来，让它能够沿着正确的方向来进行移动。（这次教程可能会长一点，因为涉及算法的讲解，童鞋们耐心的看下吧~~）。
+
+二、A星算法的介绍和寻路算法的设计 &amp;#160;&amp;#160;&amp;#160;&amp;#160;这里的话首">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos小游戏《Rabbit Escape》教程(四) A星寻路算法的实现">
+<meta property="og:url" content="http://yoursite.com/2015/02/27/cocos_teach_4/index.html">
+<meta property="og:site_name" content="Tezika">
+<meta property="og:description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160; 上一次我们创建游戏逻辑层，并且让它和UI层联系，让兔子能够实现移动。但是实现的移动都是简单的向上方向，这次的话我们要让兔子变“聪明”起来，让它能够沿着正确的方向来进行移动。（这次教程可能会长一点，因为涉及算法的讲解，童鞋们耐心的看下吧~~）。
+
+二、A星算法的介绍和寻路算法的设计 &amp;#160;&amp;#160;&amp;#160;&amp;#160;这里的话首">
+<meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_249caa7a58fdf80.png">
+<meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_a248df0ecf8f008.png">
+<meta property="og:updated_time" content="2015-07-29T03:32:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos小游戏《Rabbit Escape》教程(四) A星寻路算法的实现">
+<meta name="twitter:description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160; 上一次我们创建游戏逻辑层，并且让它和UI层联系，让兔子能够实现移动。但是实现的移动都是简单的向上方向，这次的话我们要让兔子变“聪明”起来，让它能够沿着正确的方向来进行移动。（这次教程可能会长一点，因为涉及算法的讲解，童鞋们耐心的看下吧~~）。
+
+二、A星算法的介绍和寻路算法的设计 &amp;#160;&amp;#160;&amp;#160;&amp;#160;这里的话首">
+  
+    <link rel="alternative" href="/atom.xml" title="Tezika" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars0.githubusercontent.com/u/7657467?v=3&amp;s=460" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tezika</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">果粉，ios开发，游戏开发，矮矬丑基佬技术宅一枚~</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Tezika" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/2970804137/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhou-feng-kai-49" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/cocos2d-x/" style="font-size: 10px;">cocos2d-x</a> <a href="/tags/开发教程/" style="font-size: 10px;">开发教程</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">一个做游戏的土屌丝。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Tezika</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars0.githubusercontent.com/u/7657467?v=3&amp;s=460" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Tezika</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">果粉，ios开发，游戏开发，矮矬丑基佬技术宅一枚~</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Tezika" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/2970804137/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhou-feng-kai-49" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-cocos_teach_4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/27/cocos_teach_4/" class="article-date">
+  	<time datetime="2015-02-27T13:44:41.000Z" itemprop="datePublished">2015-02-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cocos小游戏《Rabbit Escape》教程(四) A星寻路算法的实现
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocos2d-x/">cocos2d-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发教程/">开发教程</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、前言">一、前言</h1><p> &#160;&#160;&#160;&#160; 上一次我们创建游戏逻辑层，并且让它和UI层联系，让兔子能够实现移动。但是实现的移动都是简单的向上方向，这次的话我们要让兔子变“聪明”起来，让它能够沿着正确的方向来进行移动。（这次教程可能会长一点，因为涉及算法的讲解，童鞋们耐心的看下吧~~）。</p>
+<hr>
+<h1 id="二、A星算法的介绍和寻路算法的设计">二、A星算法的介绍和寻路算法的设计</h1><p> &#160;&#160;&#160;&#160;这里的话首先我们会用到游戏中经常用到的AI寻路算法的设计。实现AI的自动寻路，其实方法有很多，最无脑的就是暴力的搜索，但是实际中考虑到硬件条件和时间的复杂度应用的很少。这里使用的比较多的一种叫做A星的算法，A星算法其实一种对于经典的最短路径算法Dijkstra算法的一种改良和优化（如果不是很了解最短路径算法的童鞋可以搜索下相关资料来了解下），而对于A星算法，这里如果不了解的童鞋务必请先看下这位外国基佬的介绍（我觉得介绍的很通俗易懂），传送门：<a href="http://blog.csdn.net/ronintao/article/details/17187239" target="_blank" rel="external">http://blog.csdn.net/ronintao/article/details/17187239</a>。<br>&#160;&#160;&#160;&#160;ok，如果你对A星算法有了了解，接下来我说下的这个寻路算法设计的基本思路吧，简而言之说的话就是，<strong>“兔子没被围住的时候，采用A星算法寻路；兔子被围住的时候，采用最大通路算法”。</strong><br>&#160;&#160;&#160;&#160;详细介绍一下，首先我们需重新的修改一下我们Pos结构体,加入相关和A星寻路中需要的属性值。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//地图位置</span></span><br><span class="line"><span class="keyword">struct</span> Pos&#123;</span><br><span class="line">    <span class="comment">//cost代价</span></span><br><span class="line">    <span class="keyword">int</span> cost;</span><br><span class="line">    <span class="comment">//距离目标位置的的估计值</span></span><br><span class="line">    <span class="keyword">int</span> hEstimate;</span><br><span class="line">    <span class="comment">//A*中的F值</span></span><br><span class="line">    <span class="keyword">int</span> fVal;</span><br><span class="line">    <span class="comment">//是否是障碍;</span></span><br><span class="line">    <span class="keyword">bool</span> isObt;</span><br><span class="line">    <span class="comment">//位置信息</span></span><br><span class="line">    Vec vec;</span><br><span class="line">     </span><br><span class="line">    Pos()&#123;</span><br><span class="line">        vec.ver = <span class="number">0</span>;</span><br><span class="line">        vec.hor = <span class="number">0</span>;</span><br><span class="line">        isObt = <span class="keyword">false</span>;</span><br><span class="line">        cost = <span class="number">0</span>;</span><br><span class="line">        hEstimate = <span class="number">0</span>;</span><br><span class="line">        fVal = VAL_MAX;</span><br><span class="line">    &#125;</span><br><span class="line">    Pos(<span class="keyword">int</span> _ver,<span class="keyword">int</span> _hor)&#123;</span><br><span class="line">        vec.ver = _ver;</span><br><span class="line">        vec.hor = _hor;</span><br><span class="line">        isObt = <span class="keyword">false</span>;</span><br><span class="line">        cost = <span class="number">0</span>;</span><br><span class="line">        hEstimate = <span class="number">0</span>;</span><br><span class="line">        fVal = VAL_MAX;</span><br><span class="line">     </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>&#160;&#160;&#160;&#160;如果你真的理解了之前那个外国基佬帖子的话，这些属性值应该都知道意思了。  </p>
+<p>&#160;&#160;&#160;&#160;其次我们需要，在GameCtrl类中加入我们相关A*算法和最大通路算法的需要的函数和变量。  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/////////////A*////////////////</span></span><br><span class="line">    <span class="comment">//open集合</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;Pos *&gt; m_openPos;</span><br><span class="line">    <span class="comment">//close</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;Pos *&gt; m_closePos;</span><br><span class="line">    <span class="comment">//目标点</span></span><br><span class="line">    Pos*  <span class="keyword">m_t</span>argetPos;</span><br><span class="line">    <span class="comment">//设置目标点</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setTargetPos</span><span class="params">(<span class="keyword">const</span> Dir&amp; d)</span></span>;</span><br><span class="line">    <span class="comment">//A*寻路</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">AStart</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//H估径函数</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span>  <span class="title">funcHEstimate</span><span class="params">(Pos* p1, Pos* p2)</span></span>;</span><br><span class="line">    <span class="comment">//刷新周围的点</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateDirsFVal</span><span class="params">(Pos* newPos,<span class="keyword">int</span> curCost)</span></span>;</span><br><span class="line">    <span class="comment">//重置地图F值</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">resetMapFVal</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//获得当前的可遍历的方向</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getCurDirs</span><span class="params">(<span class="built_in">vector</span>&lt;Vec*&gt;&amp; moveDirs,<span class="keyword">const</span> Vec&amp; curVec)</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">/////////////最大通路////////////////</span></span><br><span class="line">    <span class="comment">//获得当前最大通路的方向</span></span><br><span class="line">    <span class="function">Dir <span class="title">maxRoadMove</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>&#160;&#160;&#160;&#160;ok，我们来想一下，其实归咎到底，不管是经过任何一个寻路算法神马的，最终决定兔子怎么移动的是什么？没错，就是一个Dir(方向)，只要有一个方向我们就会知道兔子该怎么移动了。<br>&#160;&#160;&#160;&#160;所以我在这里封装了一个得到兔子移动方向的函数：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//得到兔子的移动方向</span></span><br><span class="line">     <span class="function">Dir <span class="title">getRabbitMoveDir</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>&#160;&#160;&#160;&#160;这样的话我们的兔子，就不是只能向上次一样只是向上移动了，决定它移动的方向就是getRabbitMoveDir函数得到的方向。  </p>
+<p>&#160;&#160;&#160;&#160;因此最重要的变成了函数getRabbitMoveDir，是如何获取方向的呢？我先贴出这部分的代码，然后解释。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Dir GameCtrl::getRabbitMoveDir()&#123;</span><br><span class="line">    Dir minDir = Dir::none;</span><br><span class="line">    <span class="keyword">int</span> minFVal = VAL_MAX;</span><br><span class="line">    <span class="comment">//遍历可走方向,使用A*算法</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;Vec* &gt; moveDirs;</span><br><span class="line">    <span class="keyword">this</span>-&gt;getCurDirs(moveDirs,m_rabbitPos);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it:moveDirs)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!m_gameMap[m_rabbitPos.ver+it-&gt;ver][m_rabbitPos.hor+it-&gt;hor]-&gt;isObt) &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;setTargetPos((Dir)m_moveDirs[it]);</span><br><span class="line">            AStart();</span><br><span class="line">            <span class="comment">//如果小于最小价值</span></span><br><span class="line">            <span class="keyword">if</span> (minFVal&gt;<span class="keyword">m_t</span>argetPos-&gt;fVal) &#123;</span><br><span class="line">                minFVal =<span class="keyword">m_t</span>argetPos-&gt;fVal;</span><br><span class="line">                minDir  = <span class="keyword">static_cast</span>&lt;Dir&gt;(m_moveDirs[it]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">this</span>-&gt;resetMapFVal();</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果已经被围住,采用最大通路算法</span></span><br><span class="line">    <span class="keyword">if</span> (Dir::none==minDir) &#123;</span><br><span class="line">        minDir  = maxRoadMove();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minDir;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&#160;&#160;&#160;&#160;首先，不管在任何一个位置，兔子此时都有几个方向可以移动，首先要找出这几个方向（这里要说明的是并不是每个位置兔子都可以向8个方向可以移动，经过我的观察，兔子其实只有6个方向可以移动，这个和其所处位置行数的奇偶有关，关于这点童鞋们可以玩玩神经猫观察一下）。然后对这个几个方向首先进行A星寻路算法的搜索，看能不能找到一条到达边境点的最短路径（因为有可能兔子已经被围起来了），如果有则返回该路径的方向，如果没有就采用最大通路算法进行计算。<br><strong>可以简化为:</strong> </p>
+<ul>
+<li>得到可移动方向。</li>
+<li>遍历每一个方向。 <ul>
+<li>A星计算每一个方向从兔子点到边境点的最短路径和方向，并进行比较记录。</li>
+<li>计算完一个方向后要初始化地图上每个位置的f值的信息。</li>
+</ul>
+</li>
+<li>如果A星无法得到最短路径（已经被围住）,使用最大通路计算最短路径和方向。</li>
+<li>返回最短路径长。  </li>
+</ul>
+<p>&#160;&#160;&#160;&#160;关于获取当前方向，是根据奇偶得到的，所以这里看看代码就懂了。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> GameCtrl::getCurDirs(<span class="built_in">vector</span>&lt;Vec*&gt;&amp; moveDirs,<span class="keyword">const</span> Vec&amp; curVec)&#123;</span><br><span class="line">    <span class="keyword">if</span> (curVec.ver!=<span class="number">0</span>) &#123;</span><br><span class="line">        moveDirs.push_back(m_moveVec[(<span class="keyword">int</span>)Dir::up]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (curVec.ver!=NUM_MAPROWANDCOW-<span class="number">1</span>) &#123;</span><br><span class="line">         moveDirs.push_back(m_moveVec[(<span class="keyword">int</span>)Dir::down]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (curVec.hor!=<span class="number">0</span>) &#123;</span><br><span class="line">         moveDirs.push_back(m_moveVec[(<span class="keyword">int</span>)Dir::left]);</span><br><span class="line">        <span class="comment">//如果当前行数为偶数，增加上左和下左方向</span></span><br><span class="line">        <span class="keyword">if</span> (curVec.ver%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(curVec.ver!=<span class="number">0</span>)&#123;</span><br><span class="line">                moveDirs.push_back(m_moveVec[(<span class="keyword">int</span>)Dir::upLeft]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (curVec.ver!=NUM_MAPROWANDCOW-<span class="number">1</span>) &#123;</span><br><span class="line">                moveDirs.push_back(m_moveVec[(<span class="keyword">int</span>)Dir::downLeft]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果当前为计数,增加上右和下右方向</span></span><br><span class="line">    <span class="keyword">if</span> (curVec.hor!=NUM_MAPROWANDCOW-<span class="number">1</span>) &#123;</span><br><span class="line">         moveDirs.push_back(m_moveVec[(<span class="keyword">int</span>)Dir::right]);</span><br><span class="line">        <span class="keyword">if</span> (curVec.ver%<span class="number">2</span>!=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(curVec.ver!=<span class="number">0</span>)&#123;</span><br><span class="line">                moveDirs.push_back(m_moveVec[(<span class="keyword">int</span>)Dir::upRight]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (curVec.ver!=NUM_MAPROWANDCOW-<span class="number">1</span>) &#123;</span><br><span class="line">                moveDirs.push_back(m_moveVec[(<span class="keyword">int</span>)Dir::downRight]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160;&#160;&#160;&#160;其实，看到这里很多童鞋可能会问，A星算法不是只能计算一个点到另外一个点之间的最短路径吗？这里我们要计算的是兔子点到一条边境的最短路径啊？<br>&#160;&#160;&#160;&#160;哈哈哈，其实这里为了简单，运用了边境点的这一概念。<br><img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_249caa7a58fdf80.png" alt="">  </p>
+<p>&#160;&#160;&#160;&#160;图画的有点丑，讲究看下吧。这里我为了简单换成5X5的，然后假设兔子在三角形(3,1)位置，然后先画出了4个基本方向边境上的边境点（其实就可以理解为是兔子沿着该方向到达边境最近的点），这点很好理解。</p>
+<p>&#160;&#160;&#160;&#160;接下来因为兔子当前位置在基数行，所以另外两个方向为右上和右下。此时就要先进行判断到底是到达哪个边境最优，才能得到出边境点位置了。</p>
+<p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_a248df0ecf8f008.png" alt="">  </p>
+<p>&#160;&#160;&#160;&#160;其实很多童鞋，会疑问你是肿么算的，看看代码你就会知道了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> GameCtrl::setTargetPos(<span class="keyword">const</span> Dir&amp; d)&#123;</span><br><span class="line">    <span class="keyword">int</span> size = NUM_MAPROWANDCOW-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">switch</span>(d)&#123;</span><br><span class="line">        <span class="keyword">case</span>  Dir::up:</span><br><span class="line">            <span class="keyword">m_t</span>argetPos = m_gameMap[<span class="number">0</span>][m_rabbitPos.hor];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Dir::down:</span><br><span class="line">            <span class="keyword">m_t</span>argetPos = m_gameMap[size][m_rabbitPos.hor];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Dir::left:</span><br><span class="line">            <span class="keyword">m_t</span>argetPos = m_gameMap[m_rabbitPos.ver][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Dir::right:</span><br><span class="line">            <span class="keyword">m_t</span>argetPos = m_gameMap[m_rabbitPos.ver][size];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Dir::upLeft:</span><br><span class="line">            <span class="keyword">m_t</span>argetPos = m_rabbitPos.ver&lt;m_rabbitPos.hor?m_gameMap[<span class="number">0</span>][m_rabbitPos.hor-m_rabbitPos.ver]:m_gameMap[m_rabbitPos.ver-m_rabbitPos.hor][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Dir::downLeft:</span><br><span class="line">            <span class="keyword">m_t</span>argetPos = (size-m_rabbitPos.ver)&lt;m_rabbitPos.hor?m_gameMap[size][m_rabbitPos.hor+m_rabbitPos.ver-size]:m_gameMap[m_rabbitPos.ver+m_rabbitPos.hor][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Dir::upRight:</span><br><span class="line">            <span class="keyword">m_t</span>argetPos = m_rabbitPos.ver&lt;(size-m_rabbitPos.hor)?m_gameMap[<span class="number">0</span>][m_rabbitPos.ver+m_rabbitPos.hor]:m_gameMap[m_rabbitPos.ver+m_rabbitPos.hor-size][size];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Dir::downRight:</span><br><span class="line">            <span class="keyword">m_t</span>argetPos = (size-m_rabbitPos.ver)&lt;(size-m_rabbitPos.hor)?m_gameMap[size][m_rabbitPos.hor+size-m_rabbitPos.ver]:m_gameMap[m_rabbitPos.ver+size-m_rabbitPos.hor][size];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&#160;&#160;&#160;&#160;先比较沿着该方向的两个基本方向到达各自边境的距离比较，确定到达那条边境，再计算边境点的位置。<br>&#160;&#160;&#160;&#160;剩下的两个方向，有兴趣的童鞋也可以算算。其实这部分主要是利用到了一个边境点替换边境进行”偷懒“，这里其实还可以每次在遍历的时候遍历边境上的每一个点和目标点之间的最短路径，麻烦是麻烦了点，但是实际上是得到的结果会更准确。<br>&#160;&#160;&#160;&#160;好了剩下的就是A*部分的代码了，这部分其实如果理解代码了思想就很好写出来了，直接上代码。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> GameCtrl::AStart()&#123;</span><br><span class="line">    <span class="comment">//清空上次的数据</span></span><br><span class="line">    m_openPos.clear();</span><br><span class="line">    m_closePos.clear();</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//将兔子的位置放进open</span></span><br><span class="line">    m_openPos.push_back(m_gameMap[m_rabbitPos.ver][m_rabbitPos.hor]);</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//初始化当前的花费</span></span><br><span class="line">    <span class="keyword">int</span> curCost = <span class="number">0</span>;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">while</span> (!m_openPos.empty()) &#123;</span><br><span class="line">        <span class="comment">//找出open中最小的S</span></span><br><span class="line">        Pos* minPos = NULL;</span><br><span class="line">        <span class="keyword">int</span> minFval = VAL_MAX;</span><br><span class="line">        <span class="keyword">int</span> minIndex =  <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">0</span> ; i&lt;m_openPos.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (minFval&gt;=m_openPos.at(i)-&gt;fVal) &#123;</span><br><span class="line">                minFval = m_openPos.at(i)-&gt;fVal;</span><br><span class="line">                minPos = m_openPos.at(i);</span><br><span class="line">                minIndex  = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//open中剔除</span></span><br><span class="line">        m_openPos.erase(m_openPos.begin()+minIndex);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//加入close</span></span><br><span class="line">        m_closePos.push_back(minPos);</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">if</span> (NULL!=minPos)&#123;</span><br><span class="line">        <span class="comment">//如果找到目标就退出</span></span><br><span class="line">          <span class="keyword">if</span>(<span class="keyword">m_t</span>argetPos==minPos) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">             &#125;</span><br><span class="line">            curCost++;</span><br><span class="line">            <span class="built_in">vector</span>&lt;Vec*&gt; moveDirs;</span><br><span class="line">            <span class="keyword">this</span>-&gt;getCurDirs(moveDirs,minPos-&gt;vec);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> it: moveDirs) &#123;</span><br><span class="line">                <span class="keyword">this</span>-&gt;updateDirsFVal(m_gameMap[minPos-&gt;vec.ver+it-&gt;ver][minPos-&gt;vec.hor+it-&gt;hor],curCost);</span><br><span class="line">             &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> GameCtrl::updateDirsFVal(Pos* newPos,<span class="keyword">int</span> curCost)&#123;</span><br><span class="line"><span class="comment">//如果该点不是障碍</span></span><br><span class="line">  <span class="keyword">if</span>(!newPos-&gt;isStone)&#123;</span><br><span class="line">    <span class="comment">//如果该店不在close中</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">std</span>::find(m_closePos.begin(),m_closePos.end(), newPos)==m_closePos.end()) &#123;</span><br><span class="line">        <span class="comment">//如果该点也不再open中</span></span><br><span class="line">              <span class="keyword">if</span> (<span class="built_in">std</span>::find(m_openPos.begin(),m_openPos.end(), newPos)==m_openPos.end()) &#123;</span><br><span class="line">                newPos-&gt;cost=curCost;</span><br><span class="line">                <span class="comment">//计算H姑凉值</span></span><br><span class="line">                newPos-&gt;hEstimate = <span class="keyword">this</span>-&gt;funcHEstimate(newPos,<span class="keyword">m_t</span>argetPos);</span><br><span class="line">                newPos-&gt;fVal = newPos-&gt;cost+newPos-&gt;hEstimate;</span><br><span class="line">                <span class="comment">//放进open</span></span><br><span class="line">                m_openPos.push_back(newPos);</span><br><span class="line">              &#125;</span><br><span class="line">            <span class="comment">//如果在则刷新</span></span><br><span class="line">              <span class="keyword">else</span>&#123;</span><br><span class="line">                  <span class="keyword">int</span> tfVal  = curCost+<span class="keyword">this</span>-&gt;funcHEstimate(newPos,<span class="keyword">m_t</span>argetPos);</span><br><span class="line">                  <span class="keyword">if</span> (newPos-&gt;fVal&gt;tfVal) &#123;</span><br><span class="line">                    newPos-&gt;cost= curCost;</span><br><span class="line">                    <span class="comment">//计算H姑凉值</span></span><br><span class="line">                    newPos-&gt;hEstimate = <span class="keyword">this</span>-&gt;funcHEstimate(newPos,<span class="keyword">m_t</span>argetPos);</span><br><span class="line">                    newPos-&gt;fVal = newPos-&gt;cost+newPos-&gt;hEstimate;</span><br><span class="line">                     </span><br><span class="line">                  &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> GameCtrl::funcHEstimate(Pos* p1,Pos* p2)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">abs</span>(p1-&gt;vec.ver-p2-&gt;vec.ver)+<span class="built_in">abs</span>(p1-&gt;vec.hor-p2-&gt;vec.hor);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> GameCtrl::resetMapFVal()&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;NUM_MAPROWANDCOW; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;NUM_MAPROWANDCOW; j++) &#123;</span><br><span class="line">            m_gameMap[j]-&gt;fVal = VAL_MAX;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&#160;&#160;&#160;&#160;最后关于被围住后的最大通路算法，其实很好理解。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Dir GameCtrl::maxRoadMove()&#123;</span><br><span class="line">    <span class="comment">//定义规格</span></span><br><span class="line">    <span class="keyword">int</span> size = NUM_MAPROWANDCOW-<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//记录最长距离</span></span><br><span class="line">    <span class="keyword">int</span> maxL =  <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//记录返回的方向</span></span><br><span class="line">    Dir maxDir = Dir::none;</span><br><span class="line">    <span class="built_in">vector</span>&lt;Vec*&gt; moveDirs;</span><br><span class="line">    <span class="keyword">this</span>-&gt;getCurDirs(moveDirs,m_rabbitPos);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it:moveDirs) &#123;</span><br><span class="line">        <span class="keyword">int</span> curL = <span class="number">0</span>;</span><br><span class="line">        Vec curVec = m_rabbitPos+(*it);</span><br><span class="line">        <span class="comment">//如果当前不是石头并且不是边界</span></span><br><span class="line">        <span class="keyword">while</span> (!m_gameMap[curVec.ver][curVec.hor]-&gt;isObt&amp;&amp;curVec.ver&gt;<span class="number">0</span>&amp;&amp;curVec.ver&lt;size&amp;&amp;curVec.hor&gt;<span class="number">0</span>&amp;&amp;curVec.hor&lt;size)&#123;</span><br><span class="line">            curL++;</span><br><span class="line">            curVec = curVec +(*it);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (maxL&lt;curL) &#123;</span><br><span class="line">            maxL = curL;</span><br><span class="line">            maxDir = (Dir)m_moveDirs[it];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxDir;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160;&#160;&#160;&#160;想想如果被围住了，怎么办呢？当然是做垂死的挣扎，朝着没有障碍最多的一个方向移动呀！上面的代码就是这个意思。（注意这里因为我采用的是边界点替代边界，可能在被围住判断过程中会出现一定的误差，大牛们可以帮我看下这个BUG)。<br>&#160;&#160;&#160;&#160;最后我们再修改一下HelloWorld中的相关部分，可以添加一个随机产生障碍的函数玩玩。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> HelloWorld::setRandStones(<span class="keyword">int</span> num)&#123;</span><br><span class="line">    <span class="keyword">int</span> curNum = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//随机产生障碍</span></span><br><span class="line">    <span class="keyword">while</span> (num!=curNum) &#123;</span><br><span class="line">        <span class="keyword">int</span> ver,hor,tag;</span><br><span class="line">        ver = <span class="number">1</span>+rand_0_1()*(NUM_MAPROWANDCOW-<span class="number">2</span>);</span><br><span class="line">        hor = <span class="number">1</span>+rand_0_1()*(NUM_MAPROWANDCOW-<span class="number">2</span>);</span><br><span class="line">        tag = ver*NUM_MAPROWANDCOW+hor;</span><br><span class="line">        <span class="keyword">if</span>(!m_pNodes-&gt;getChildByTag(tag)-&gt;isVisible()&amp;&amp;!(ver==NUM_MAPROWANDCOW/<span class="number">2</span>&amp;&amp;hor==NUM_MAPROWANDCOW/<span class="number">2</span>))&#123;</span><br><span class="line">            m_pNodes-&gt;getChildByTag(tag)-&gt;setVisible(<span class="keyword">true</span>);</span><br><span class="line">            m_ctrl-&gt;addObtacle(tag);</span><br><span class="line">            curNum++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160;&#160;&#160;&#160;现在编译运行就可以看见，当你添加障碍的时候，兔子好像真的变得很”聪明“，一股脑的往边界跑，但是还没有胜利和失败的判断，下次我们会对游戏进行最后的完善。  </p>
+<hr>
+<h1 id="三、最后说几句">三、最后说几句</h1><ul>
+<li><strong>.这次教程难度可能会有点大，因为涉及算法的讲解，其实这里我想说，如果我们作为开发者真的想要有所提高，算法和数据结构是根本的。所以希望大家能够不要光是会用引擎，调调API神马的。更要学习一下经典的一些算法，丰富自己游戏开发的基础。</strong> </li>
+<li><strong>本次教程的资源传送门：<a href="http://pan.baidu.com/s/1o6mh5ZO" target="_blank" rel="external">http://pan.baidu.com/s/1o6mh5ZO</a>,密码：70gc。</strong></li>
+<li><strong>如果教程出现语法，拼字错误还请见谅~~~</strong><hr>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/29/5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          5
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/26/cocos_teach_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cocos小游戏《Rabbit Escape》教程(三) 让兔子动起来</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="cocos_teach_4" data-title="Cocos小游戏《Rabbit Escape》教程(四) A星寻路算法的实现" data-url="http://yoursite.com/2015/02/27/cocos_teach_4/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Tezika
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
