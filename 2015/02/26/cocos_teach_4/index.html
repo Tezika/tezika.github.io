@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Cocos小游戏《Rabbit Escape》教程(三) 让兔子动起来 | Tezika</title>
+  <title>Cocos小游戏《Rabbit Escape》教程(四) A*寻路算法的实现 | Tezika</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160; 首先预祝大家新年快乐！最近都在忙着过年，因为回老家了，教程很久没更新了。首先感谢cocoschina社区对我教程的支持（今天意外的在中文引擎网上看到了自己的教程），以后我会把我学习cocos的过程做的一些demo项目都开源做成一些教程和大家一起学习。 &amp;#160;&amp;#160;&amp;#160;&amp;#160;经过上一讲的讲解，我们已经可以将UI响应">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocos小游戏《Rabbit Escape》教程(三) 让兔子动起来">
-<meta property="og:url" content="http://yoursite.com/2015/02/26/cocos_teach_3/index.html">
+<meta property="og:title" content="Cocos小游戏《Rabbit Escape》教程(四) A*寻路算法的实现">
+<meta property="og:url" content="http://yoursite.com/2015/02/26/cocos_teach_4/index.html">
 <meta property="og:site_name" content="Tezika">
 <meta property="og:description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160; 首先预祝大家新年快乐！最近都在忙着过年，因为回老家了，教程很久没更新了。首先感谢cocoschina社区对我教程的支持（今天意外的在中文引擎网上看到了自己的教程），以后我会把我学习cocos的过程做的一些demo项目都开源做成一些教程和大家一起学习。 &amp;#160;&amp;#160;&amp;#160;&amp;#160;经过上一讲的讲解，我们已经可以将UI响应">
 <meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_a915c0de33256ca.png">
 <meta property="og:image" content="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_c1b5a79528acf92.png">
-<meta property="og:updated_time" content="2015-07-29T02:35:57.000Z">
+<meta property="og:updated_time" content="2015-07-29T02:43:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocos小游戏《Rabbit Escape》教程(三) 让兔子动起来">
+<meta name="twitter:title" content="Cocos小游戏《Rabbit Escape》教程(四) A*寻路算法的实现">
 <meta name="twitter:description" content="一、前言 &amp;#160;&amp;#160;&amp;#160;&amp;#160; 首先预祝大家新年快乐！最近都在忙着过年，因为回老家了，教程很久没更新了。首先感谢cocoschina社区对我教程的支持（今天意外的在中文引擎网上看到了自己的教程），以后我会把我学习cocos的过程做的一些demo项目都开源做成一些教程和大家一起学习。 &amp;#160;&amp;#160;&amp;#160;&amp;#160;经过上一讲的讲解，我们已经可以将UI响应">
   
     <link rel="alternative" href="/atom.xml" title="Tezika" type="application/atom+xml">
@@ -193,10 +193,10 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-cocos_teach_3" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-cocos_teach_4" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/02/26/cocos_teach_3/" class="article-date">
+      <a href="/2015/02/26/cocos_teach_4/" class="article-date">
   	<time datetime="2015-02-26T13:44:41.000Z" itemprop="datePublished">2015-02-26</time>
 </a>
     </div>
@@ -210,7 +210,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Cocos小游戏《Rabbit Escape》教程(三) 让兔子动起来
+      Cocos小游戏《Rabbit Escape》教程(四) A*寻路算法的实现
     </h1>
   
 
@@ -275,18 +275,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/02/26/cocos_teach_4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Cocos小游戏《Rabbit Escape》教程(四) A*寻路算法的实现
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/02/12/cocos_teach_2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Cocos小游戏《Rabbit Escape》教程(二) 游戏界面和障碍物</div>
+    <a href="/2015/02/26/cocos_teach_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cocos小游戏《Rabbit Escape》教程(三) 让兔子动起来</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -315,7 +306,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="cocos_teach_3" data-title="Cocos小游戏《Rabbit Escape》教程(三) 让兔子动起来" data-url="http://yoursite.com/2015/02/26/cocos_teach_3/"></div>
+	<div class="ds-thread" data-thread-key="cocos_teach_4" data-title="Cocos小游戏《Rabbit Escape》教程(四) A*寻路算法的实现" data-url="http://yoursite.com/2015/02/26/cocos_teach_4/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
