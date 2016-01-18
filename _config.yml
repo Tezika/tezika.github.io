@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: Tezika
+subtitle: Game Programmer | Gamer :)
 description:
 author: Tezika
 language:
@@ -68,4 +68,7 @@ theme: hexo-theme-yilia
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:Tezika/tezika.github.io.git
+  branch: master
+  message: ""
