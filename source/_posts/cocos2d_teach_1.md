@@ -14,12 +14,12 @@ __________
   * **cocosstudio 2.06**  
   * **Xcode6**
 __________
-#三、游戏截图  
+# 三、游戏截图  
    ![](http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_0005bf42740f229.png?ra=0.4133066611830145 =200x) ![](http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_34f83b4eee59bec.png?ra=0.13436963269487023 =250x)![](http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_0f0d9e430ec0bdc.png?ra=0.962736047571525 =250x)
    ______
-#四、项目截图
+# 四、项目截图
 ![](http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_a3976def48a53f5.png?ra=0.10107129951938987)  
-#五、最后说两句
+# 五、最后说两句
 * **本Demo仅供交流，请勿用于商业开发** 
 * **该教程针对于有一定cocos2d-x基础的童鞋（所以类似于怎么建项目，以及scene,layer,node这些基本概念是不会介绍）。**
 * **因为开发使用机器系统为mac，所以上传的解压文件中包括源项目文件proj.ios_mac,Classes,Resources文件夹以及cocosstudio的项目文件夹Rabbit。 使用mac的童鞋:直接新建一个项目复制proj.ios_mac,Classes,Resources文件夹到项目中覆盖掉原来的，打开proj.ios_mac中的Xcode文件编译即可。使用windows的童鞋:需要打开项目中pro.win32进行编译。**  

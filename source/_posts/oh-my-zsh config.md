@@ -4,7 +4,7 @@ tags:
 - zsh
 - Mac
 ---
-#一、zsh shenmegui?
+# 一、zsh shenmegui?
 &#160;&#160;&#160;&#160;使用mac的话如果不用Terminal的话，那就真的可以拿你的mac去装windows了,just kidding.但是当你代开terminal的时候看到这个bash是否会觉得要吐的赶脚呢？  
 ![](http://m1.yea.im/1Cl.png)  
 &#160;&#160;&#160;&#160;是否有种想给它换点料的赶脚呢？just like this。。。  
@@ -29,7 +29,7 @@ cat /etc/shells```
  
 &#160;&#160;&#160;&#160;以上摘自知乎专栏关于zsh的介绍<http://zhuanlan.zhihu.com/mactalk/19556676>，是不是突然觉得很拉风，Mac程序狗们有没有心动。
 __________________
-#二、how to config it
+# 二、how to config it
 * **首先要保证你的电脑装了git(好废话，mac预装了)，然后ssh配置ok,反正保证你能从Github克隆代(xiao)码(dian)库(ying)下来~**  
 * **官方其实提供了两种安装方式，一种是：**  
  ```sh
@@ -51,7 +51,7 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc```
 chsh -s /bin/zsh```
 一切顺利的话重启你的terminal就可以看到oh-my-zsh了:)!
 ________________
-#三、Custom it
+# 三、Custom it
 &#160;&#160;&#160;&#160;最后来讲讲优化它，这里只讲如何更换主题，首先回到根目录。然后使用  
 ```sh
 vim .zshrc```
