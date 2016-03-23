@@ -39,7 +39,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">Game Programmer | Gamer :)</p>
+		<p class="header-subtitle">Game Programmer | Game Designer</p>
 		
 
 		
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/cocos2d-x/" style="font-size: 20px;">cocos2d-x</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/开发教程/" style="font-size: 20px;">开发教程</a> <a href="/tags/游戏回味/" style="font-size: 10px;">游戏回味</a> <a href="/tags/生活杂记/" style="font-size: 15px;">生活杂记</a>
+						<a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Unity/" style="font-size: 10px;">Unity</a> <a href="/tags/cocos2d-x/" style="font-size: 20px;">cocos2d-x</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/开发教程/" style="font-size: 20px;">开发教程</a> <a href="/tags/游戏回味/" style="font-size: 10px;">游戏回味</a> <a href="/tags/生活杂记/" style="font-size: 15px;">生活杂记</a>
 					</div>
 				</section>
 				
@@ -139,7 +139,7 @@
 				
 				<section class="switch-part switch-part4">
 				
-					<div id="js-aboutme">Game programmer | Gamer :)</div>
+					<div id="js-aboutme">半吊子游戏程序员，野生自学游戏设计中，努力做一个积极乐观，乐于分享的Gamer:)</div>
 				</section>
 				
 			</div>
@@ -162,7 +162,7 @@
 			  <h1 class="header-author">Tezika</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">Game Programmer | Gamer :)</p>
+			<p class="header-subtitle">Game Programmer | Game Designer</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -191,6 +191,112 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-AuditionforUnity" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/20/AuditionforUnity/" class="article-date">
+  	<time datetime="2016-03-20T06:28:49.000Z" itemprop="datePublished">2016-03-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/AuditionforUnity/">Unity面试中的一些常见问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一、什么是协同程序?</strong><br>在主线程运行时同时开启另一段逻辑处理，来协助当前程序的执行。换句话说，开启协程就是开启一个可以与程序并行的逻辑。可以用来控制运动、序列以及对象的行为。  </p>
+<p><strong>二、碰撞器和触发器的区别</strong><br>碰撞器是触发器的载体，而触发器只是碰撞器身上的一个属性。<br>物体属性<code>isTrigger = false</code>时候，碰撞器会触发物理碰撞，产生碰撞效果，可以调用<code>onCollisionEnter/Stay/Exit</code>函数处理相应的逻辑。<br>当<code>isTrigger = true</code>,碰撞器被物理引擎所忽略，没有碰撞效果，可以调用<code>OnTriggerEnter/Stay/Exit</code>函数。  </p>
+<p><strong>三、物体发生碰撞的必要条件</strong><br>两个物体都必须带有碰撞器Collider，其中一个物体还必须带有Rigidbody刚体。  </p>
+<p><strong>四、ArrayList和List<type>的区别</type></strong><br>ArrayList存在不安全的类型:   </p>
+<ul>
+<li>ArrayList会把插入其中的数据类型都当做Object处理。  </li>
+<li>装箱和拆箱的操作。  </li>
+</ul>
+<p><strong>五、请简述GC（垃圾回收）产生的原因，并描述如何避免？</strong><br>原因：回收堆区的内存。<br>避免：</p>
+<ol>
+<li>减少new的使用。  </li>
+<li>使用公共的对象(全局，静态)。  </li>
+<li>String-&gt;StringBuilder。   </li>
+</ol>
+<p><strong>六、反射的实现原理？</strong>  </p>
+<ul>
+<li>导入<code>using System.Reflection</code></li>
+<li><p><code>Assembly.Load(&quot;程序集&quot;);</code>//加载程序集,返回类型是一个Assembly，得到程序集中所有类的名称。</p>
+</li>
+<li><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> foreach (Type type in assembly.GetTypes())&#10;&#123;&#10;  string t = type.Name;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Type type = assembly.GetType(&quot;程序集.类名&quot;);</code>//获取当前类的类型</p>
+</li>
+<li><code>Activator.CreateInstance(type);</code>//创建此类型实例</li>
+<li><code>MethodInfo mInfo = type.GetMethod(&quot;方法名&quot;);</code>//获取当前方法  </li>
+<li><code>mInfo.Invoke(null,方法参数)</code>  </li>
+</ul>
+<p><strong>七、简述四元数Quaternion的作用，四元数对欧拉角的优点？</strong><br>四元数用于表示旋转</p>
+<p>相对欧拉角的优点： </p>
+<ul>
+<li>避免万向锁<a href="https://zh.wikipedia.org/wiki/%E7%92%B0%E6%9E%B6%E9%8E%96%E5%AE%9A" target="_blank" rel="external">万向锁的解释</a>  </li>
+<li>能进行增量旋转  </li>
+<li>给定万向锁的表达方式有两种，互为负(欧拉角)  </li>
+</ul>
+<p><strong>八、如何安全的在不同工程间安全地迁移asset数据？三种方法</strong>   </p>
+<ol>
+<li>打包成packge</li>
+<li>将Assets和Library一起迁移。</li>
+<li>unity自带的Assets Server.</li>
+</ol>
+<p><strong>九、<code>Awake</code>,<code>OnEnable</code>,<code>Start</code>运行时顺序？哪些可能在一个周期中反复发生？</strong><br>Awake-&gt;OnEnable-&gt;Start。<br>OnEnable在同一周期中可以反复的发生。  </p>
+<p><strong>十、MeshRender中material和sharedmaterial的区别</strong><br>修改sharedmaterial将修改使用这个材质的外观，<br>并且也改变储存在工程里的材质设置。  </p>
+<p><strong>十一、TCP/IP协议栈各个层次及分别的功能</strong>  </p>
+<ul>
+<li>网络接口层：这是协议栈的最低层，对应OSI的物理层和数据链路层，主要完成数据帧的实际发送和接受。</li>
+<li>网络层：处理分组在网络中的活动，例如路由的选择和转发等，这一层主要把包括IP协议，ARP,ICMP协议等。</li>
+<li>传输层：主要功能是提供应用程序之间的通信，这一层主要是TCP/UDP协议。</li>
+<li>应用层：用来处理特定的应用，针对不同的应用提供不同的协议，例如进行文件传输时用到的FTP协议，发送emial用到的SMTP等。</li>
+</ul>
+<p><strong>十二、Unity提供了几种广元，分别是什么？</strong><br>四种，平行光，点光源，聚光灯和区域光源。  </p>
+<p><strong>十三、简述一下对象池，你觉得FPS里哪些东西适合使用对象池？</strong><br>对象池就存放需要反复调用资源的一个空间，比如游戏中需要经常被大量复制的对象，子弹，敌人，以及任何重复出现的对象。</p>
+<p><strong>十五、CharacterController和Rigbody的区别？</strong><br>Rigbody具有完全真实的物理特性，而CharacterController可以说是受限的Rigidbody具有一定的物理特效但不是完全真实的。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-BreakUp" class="article article-type-post" itemscope itemprop="blogPost">
   
