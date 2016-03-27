@@ -1,4 +1,4 @@
-title: Unity面试中的一些常见问题
+title: Unity中的一些常见的问题(忽视点)
 date: 2016-03-20 14:28:49
 tags:
 - Unity
@@ -74,8 +74,90 @@ OnEnable在同一周期中可以反复的发生。
 **十三、简述一下对象池，你觉得FPS里哪些东西适合使用对象池？**
 对象池就存放需要反复调用资源的一个空间，比如游戏中需要经常被大量复制的对象，子弹，敌人，以及任何重复出现的对象。
 
-**十五、CharacterController和Rigbody的区别？**  
-Rigbody具有完全真实的物理特性，而CharacterController可以说是受限的Rigidbody具有一定的物理特效但不是完全真实的。
+**十四、CharacterController和Rigbody的区别？**  
+Rigbody具有完全真实的物理特性，而CharacterController可以说是受限的Rigidbody具有一定的物理特效但不是完全真实的。  
+     
+**十五、移动相机动作在哪个函数里，为什么在这个函数里？**
+LateUpdat，是所有的Update结束后才调用，比较很适合命令脚本的执行。因为要等所有操作都完城后再进行摄像机的跟进，不然就可能能出现摄像机已经更近了，但是视角里还没有角色的空帧。  
+
+**十六、简述prefab的用处**
+prefab,官方翻译为预设。在游戏运行时进行实例化，prefab相当于一个模板，对你已有的蔬菜、脚本、参数做一个默认的配置，以便于以后的修改，同时prefab打包内容简化了导出操作，便于团队交流。  
+  
+**十七、sealed关键字在类申明和函数申明的作用**  
+类申明的时候无法被继承，方法申明的时候可防止派生类重写此方法。  
+
+**十八、请简述private，public，protected，internal的区别。**  
+public:对任何类和成员都公开，无限制访问。  
+private:仅对该类公开  
+protected：对该类和其派生类公开  
+internal:只能在包含该类的程序集中访问该类。  
+
+**十九、什么是渲染管道**  
+是指在显示器为了显示出图像而经过的一些列必要操作。渲染管道中的很多步骤，都要将几何物体从一个坐标系变换到另一个坐标系中去。
+
+**二十、如何在Unity中优化内存**
+1. 压缩自带类库。
+2. 将暂时不用的以后还需要使用的物体隐藏起来而不是Destory掉。
+3. 释放AssetBundle占用的资源。
+4. 降低模型的片面数，降低模型的骨骼数量，降低贴图的大小。
+5. 使用光照贴图，LOD,使用着色器shader,使用prefab。  
+  
+**二十一、动态添加资源的方法**
+1. `Resources.Load(...);`
+2. AssetBundle
+  
+**二十二、使用Unity实现2D游戏的方式？**
+1.自带U2D.
+2.使用2d插件，2DToolKIT,NGUI  
+  
+**二十三、unity物理引擎中，施加力的方式**
+1. `rigidbody.AddForce(...)`  
+2. `rigidbody.AddForceAtPosition(...)`
+  
+**二十四、什么叫做链条关节**
+Hinge Joint，可以模拟两个物体间用一根链条连接在一起的情况，能保持两个物体在一个固定的距离内部相互移动而不产生作用力，但是达到固定距离后就会产生拉力。  
+  
+**二十五、Unity脚本的生命周期**    
+Awake->OnEnable->Start->Update->FixedUpdate(一般放物理相关的)->LateUpdate(移动相机等)->OnGUI->Reset->OnDisable->OnDestroy
+
+
+**二十六、物理更新一般放在哪个系统函数里面**  
+FixedUpdate,FixedUpdate是渲染帧执行，渲染效率低下的时候FixedUpdate的调用次数会跟着下降。  
+  
+**二十七、请描述为什么Unity3d中会发生在组件上出现数据丢失的情况**  
+一般是组件上绑定的物体对象被删除了。  
+
+  
+** 二十八、 请问下列代码运行中会产生多少个临时对象？**
+```c#
+string a = new string("abc");
+a = (a.ToUpper() + "123").Substring(0, 2);
+```
+
+0个，因为在C#中第一行会出错，应该这样初始化
+`string b = new string(new char[]{'a','b','c'});`  
+  
+**二十九、  下列代码在运行中会发生什么问题？该如何避免？**  
+```c#
+List<int> ls = new List<int>(new int[] { 1, 2, 3, 4, 5 });
+foreach (int item in ls)
+{
+    Console.WriteLine(item * item);
+    ls.Remove(item);
+}
+```  
+会出现运行时的错误，因为foreach是只读的。
+  
+**三十、.net和Mono的关系**
+mono是.net的一个开源的跨平台工具，类似于java的虚拟机。java本身不是跨平台的语言，但是跑在虚拟机上就可以跨平台。.net只能在windows下运行,mono却可以实现跨平台编译和运行，如Linux，Unix，Mac OS等。
+
+
+
+
+
+ 
+  
+  
 
 
 
