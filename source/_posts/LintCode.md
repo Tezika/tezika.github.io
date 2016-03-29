@@ -4,8 +4,7 @@ tags:
 - 数据结构和算法
 ---
 ## 介绍  
- &#160;&#160;&#160;&#160; 为了学习和巩固数据结构和算法基础，于是便开始受苦的LintCode之旅，现在差不多刷了有50%，所以想把一些题的自己思路，以题解的形式记录下来。同时
-可以在[Github中的题解库](https://github.com/Tezika/LintCode)，找到相应题的详细代码:).
+ &#160;&#160;&#160;&#160; 为了学习和巩固数据结构和算法基础，于是便开始受苦的LintCode之旅，现在差不多刷了有50%，所以想把一些题的自己思路，以题解的形式记录下来。同时可以在[Github中的题解库](https://github.com/Tezika/LintCode)，找到相应题的详细代码:).
 ## Hard,54,[转换字符串到整数](http://www.lintcode.com/zh-cn/problem/string-to-integer-ii/)    
   &#160;&#160;&#160;&#160; 这道题看似比较简单，但是其实坑很多的。比如会出现“   &#160;&#160;&#160;  -52”，“  &#160;&#160;&#160;&#160;52lintcode”这样畸形和有爱的数据。个人认为这道题主要是考虑你处理一些不寻常数据时候的能力，通过率比较低，下面是代码。  
 ```c++ 
@@ -85,4 +84,6 @@ tags:
     }
 ```
 
+## Hard,103,[带环链表II](http://www.lintcode.com/zh-cn/problem/string-to-integer-ii/)  
+ &#160;&#160;&#160;&#160;这道题是根据之前[带环链表](http://www.lintcode.com/zh-cn/problem/linked-list-cycle/)和[两个链表交叉](http://www.lintcode.com/zh-cn/problem/intersection-of-two-linked-lists/)的思路衍生题。思路是**首先判断是否有环，然后在两个指针相遇处，把链表断开。最后在找到两个链表的交点就是所要求的交点**。代码比较繁琐，这里就不贴了，详细解法请看github库中List.cpp文件中的相关函数。
 
