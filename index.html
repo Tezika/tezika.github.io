@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Unity/" style="font-size: 10px;">Unity</a> <a href="/tags/cocos2d-x/" style="font-size: 20px;">cocos2d-x</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/开发教程/" style="font-size: 20px;">开发教程</a> <a href="/tags/数据结构和算法/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/游戏回味/" style="font-size: 10px;">游戏回味</a> <a href="/tags/生活杂记/" style="font-size: 15px;">生活杂记</a>
+						<a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Unity/" style="font-size: 10px;">Unity</a> <a href="/tags/cocos2d-x/" style="font-size: 20px;">cocos2d-x</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/开发教程/" style="font-size: 20px;">开发教程</a> <a href="/tags/数据结构和算法/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/游戏回味/" style="font-size: 10px;">游戏回味</a> <a href="/tags/游戏开发/" style="font-size: 10px;">游戏开发</a> <a href="/tags/独立游戏/" style="font-size: 10px;">独立游戏</a> <a href="/tags/生活杂记/" style="font-size: 15px;">生活杂记</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,92 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Shooter" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/05/Shooter/" class="article-date">
+  	<time datetime="2016-05-05T06:43:47.000Z" itemprop="datePublished">2016-05-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/05/Shooter/">Shooter Demo设计笔记(持续更新)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> &#160;&#160;&#160;&#160; 因为最近很深受Rouge向游戏的毒害，如BloodBorne,The Binding of Issac以及Tiny Rogue等等，很喜欢那种受挫感和通关后的成就感的情感反馈的感觉。所以想试着将自己对Rouge的一些理解和一些有意思的想法结合，做成一个Demo,试试。<br> &#160;&#160;&#160;&#160;首先什么是Rouge呢？我这里也不废话，首先是<a href="https://zh.wikipedia.org/zh/Roguelike" target="_blank" rel="external">wiki的解释</a>,然后这里再附上一篇个人认为不错的分析文章 <a href="http://pre-sence.com/archives/roguelike-dossier" target="_blank" rel="external">rouge like到底是啥？</a><br> 这篇文章中调到了几个rougelike类游戏的特性：  </p>
+<ul>
+<li>随机生成的环境 游戏世界是以某种方式随机生成的，或者世界中的某些部分是随机生成的。这里可以包括地形，物品和怪物出现的位置等。随机生成物品和怪物如果有的话当然更好啦。随机生成的好处就是可以提高重复游戏性，所以显然的固定的谜题和剧情在这方面不是太管用。  </li>
+<li>永久死亡 一个游戏角色只有一条命。如果死掉的话这个角色就到此为止了，你只能以另一个角色的身份来重新开始游戏。对应的思路就是你必须为你的选择和失误付出代价，就像现实生活一样，哟。</li>
+<li>回合制 与回合制相对的应该就是实时制了。回合制的游戏不应该对现实时间的流逝有反应，游戏中的世界是按照一回合一回合来运转的。这样再回合之间你可以有无限的时间进行思考。事实上，需要你停下来想上个一会儿的情况在优秀的 Roguelike 中是会经常出现的。</li>
+<li>统一的游戏模式 (Non Modal) 这个也是从反面讲比较容易理解。像最终幻想那样在大地图上走，遇敌切换到战斗界面的游戏就是 “Modal” 的。Roguelike 要求所有操作都是在统一的一个界面上完成的，这个界面一般就是一个 2D 的地图。</li>
+<li>复杂度 游戏允许以多种多样的方式来完成同一个目标。一个例子就是你不论选择近战或者远程还是法术路线，都可以玩的下去。</li>
+<li>打怪练级，探索世界 每个人都喜欢这一套。我猜这里想表达的应该是游戏还是得有一个能够承载上面那些特性的主体内容。显然大部分情况下打怪练级，探索世界都是最管用的一套。  </li>
+</ul>
+<p>&#160;&#160;&#160;&#160; <strong> Roguelike 在这方面有一个重要的优势 - 它的整个系统都是围绕”重玩价值”(Replay Value)来构思的。</strong>  </p>
+<p>&#160;&#160;&#160;&#160;如果对于个人来说的话，我对rouge在设计角度的理解，更倾向以下的几点：    </p>
+<ul>
+<li><p>各种的成长放在单局过程中，永久死亡的特性。将死亡的代价最大化。  </p>
+</li>
+<li><p>随机的地图，敌人和补给品，让游戏的随机因素增加。   </p>
+</li>
+<li><p>游戏的整体难度设计上偏难(必要的时候需要一点恶意)，给玩家造成较强的挫败感，刺激玩家的挑战欲。</p>
+<p>&#160;&#160;&#160;&#160;基于上面我归纳的几点，选择一个比较简单但是有一定深度挖掘的核心玩法，加上一些rouge的元素和一些其他的元素，成为一个文章所提到的rouge-like游戏，成了我的最终目标。<br>&#160;&#160;&#160;&#160;我选择了Unity官方的一个实例demo，<a href="https://unity3d.com/cn/learn/tutorials/projects/survival-shooter-project" target="_blank" rel="external">Survival Shooter</a>,这是一款2.5D的射击生存类游戏。为什么选择这个demo呢？</p>
+</li>
+<li><p>这个视角的射击游戏，一定程度上增加了游戏的难度。  </p>
+</li>
+<li><p>操作简单，但是需要不停的走位，来躲避敌人，所以很难造成心流(flow)断层。</p>
+<p>&#160;&#160;&#160;&#160;下面是我设计和实现的一个玩法上实验性的level,其中主要相比原demo加入物品系统和对enemy的基本数值进行一些修整，加大了单局游戏的难度。下面是个Demo的演示视频：<br><iframe height="498" width="510" src="http://player.youku.com/embed/XMTU0OTkxNDQyOA==" frameborder="0" allowfullscreen></iframe><br>想要试玩的朋友可以在这里自取<a href="https://pan.baidu.com/s/1kUFrEQF" target="_blank" rel="external">Shooter v0.3 for mac,win</a><br>&#160;&#160;&#160;&#160;在下个版本(v0.6)的迭代中,准备加入的一些东西有：</p>
+<ul>
+<li>物品栏和物品系统的加入(buff类物品，非buff类物品)</li>
+<li>从一个level增加到三个level，整体过程为(level1 -&gt; level2 -&gt; level3 -&gt; boss)  </li>
+<li>加入单局的养成系统，对于player增加属性的成长，如LV,HP,AP,ShootDistance…..</li>
+<li>丰富enemy的设计和Boss的设计(攻击方式，技能增加)。</li>
+<li>Item系统的丰富。<br>……….</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏开发/">游戏开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/独立游戏/">独立游戏</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-AuditionforUnity" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -893,85 +979,6 @@ foreach (int item in ls)
 <li><strong>因为电脑重装系统了，所以这次上传的东西是用v3.4和cocos studio 2.1版本。所以如果有的童鞋还用的是3.3版本的话，可能编译的时候cocosstudio的资源没办法加载。这种情况的话，将ccs用老版的cocosstudio打开后重新发布下资源，就可以使用了。</strong> </li>
 <li><strong>本教程仅供交流和学习，切勿用于商业开发，转载请注明出处。如果有疑问和更好建议的童鞋可以给我留言或者微博(@Tezika)私信我，我也会在最快做出回复。</strong></li>
 <li><strong>附件地址：<a href="http://pan.baidu.com/s/1jG3Q830" target="_blank" rel="external">http://pan.baidu.com/s/1jG3Q830</a>, 密码：l90h</strong></li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocos2d-x/">cocos2d-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发教程/">开发教程</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-cocos_teach_2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/12/cocos_teach_2/" class="article-date">
-  	<time datetime="2015-02-12T13:44:41.000Z" itemprop="datePublished">2015-02-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/12/cocos_teach_2/">Cocos小游戏《Rabbit Escape》教程(二) 游戏界面和障碍物</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="u4E00_u3001_u524D_u8A00"><a href="#u4E00_u3001_u524D_u8A00" class="headerlink" title="一、前言"></a>一、前言</h1><p> &#160;&#160;&#160;&#160;因为最近在学点东西，忘记更新该教程了。争取能在春节前更完吧。今天主要讲讲cocos2d-x与cocosstudio如何联系起来，以及实现游戏中添加障碍物。废话不多说，我们开始吧！       </p>
-<hr>
-<h1 id="u4E8C_u3001cocos2d-x_u548Ccocosstudio_u7684_u5982_u4F55_u8054_u7CFB_u8D77_u6765_u642D_u5EFA_u6E38_u620F_u754C_u9762"><a href="#u4E8C_u3001cocos2d-x_u548Ccocosstudio_u7684_u5982_u4F55_u8054_u7CFB_u8D77_u6765_u642D_u5EFA_u6E38_u620F_u754C_u9762" class="headerlink" title="二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面"></a>二、cocos2d-x和cocosstudio的如何联系起来搭建游戏界面</h1><p>  &#160;&#160;&#160;&#160;首先建好一个cocos2d-x新项目，用cocosstudio2打开附件中的Rabbit资源文件Rabbit.ccs，UI界面我早已给大家设计好。<br>  <img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_42eec0c9335cc00.png" alt=""><br>  &#160;&#160;&#160;&#160;主要关注一下，节点树结构。因为会和等下的程序中的调用有很大的联系。然后将文件夹res的所有资源添加到新项目的Resources中(是Resources,而不是其中的res,这样操作主要是考虑到不用设置路径)。然后，来撸代码 !<br>&#160;&#160;&#160;&#160;修改后的HelloWorld.h<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> __HELLOWORLD_SCENE_H__</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> __HELLOWORLD_SCENE_H__</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"cocos2d.h"</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> HelloWorld : <span class="keyword">public</span> cocos2d::Layer</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// there's no 'id' in cpp, so we recommend returning the class instance pointer</span></span><br><span class="line">    <span class="keyword">static</span> cocos2d::<span class="function">Scene* <span class="title">createScene</span><span class="params">()</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// a selector callback</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">menuCloseCallback</span><span class="params">(cocos2d::Ref* pSender)</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// implement the "static create()" method manually</span></span><br><span class="line">    CREATE_FUNC(HelloWorld);</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">onTouchBeganCallBack</span><span class="params">(cocos2d::Touch* t,cocos2d::Event* event)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//存放所有子节点</span></span><br><span class="line">    Node* m_pNodes;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//存放兔子的节点</span></span><br><span class="line">    Node* m_pNode_rabbit;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//存放障碍的节点的容器</span></span><br><span class="line">    cocos2d::Vector&lt;Node* &gt; m_pNodes_obstacle;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span> <span class="comment">// __HELLOWORLD_SCENE_H__</span></span></span><br></pre></td></tr></table></figure></p>
-<p>&#160;&#160;&#160;&#160;HelloWorld.cpp，这里我只截取了重要的init函数：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// on "init" you need to initialize your instance</span></span><br><span class="line"><span class="keyword">bool</span> HelloWorld::init()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//////////////////////////////</span></span><br><span class="line">    <span class="comment">// 1. super init first</span></span><br><span class="line">    <span class="keyword">if</span> ( !Layer::init() )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取和添加场景节点</span></span><br><span class="line">    <span class="keyword">auto</span> pNode_scene = CSLoader::createNode(<span class="string">"MainScene.csb"</span>);</span><br><span class="line">    <span class="keyword">this</span>-&gt;addChild(pNode_scene);</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">    <span class="comment">//获取所有子节点</span></span><br><span class="line">    m_pNodes= pNode_scene-&gt;getChildByName(<span class="string">"Sprite_bg"</span>);</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//分别的到兔子和障碍节点</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it = m_pNodes-&gt;getChildren().begin(); it!=m_pNodes-&gt;getChildren().end(); it++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((*it)-&gt;getName()==<span class="string">"Sprite_Rabbit"</span>) &#123;</span><br><span class="line">            m_pNode_rabbit = (*it);</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            m_pNodes_obstacle.pushBack((*it));</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&#160;&#160;&#160;&#160;首先如果要进行cocosstudio和cocos2d-x的联系的话，首先要添加头文件<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"editor-support/cocostudio/CocoStudio.h"</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"ui/CocosGUI.h"</span></span></span><br></pre></td></tr></table></figure></p>
-<p>&#160;&#160;&#160;&#160;然后可以使用CSLoader工具中的create方法中节点的Node* 获取.csb文件中的场景节点。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取和添加场景节点</span></span><br><span class="line">    <span class="keyword">auto</span> pNode_scene = CSLoader::createNode(<span class="string">"MainScene.csb"</span>);</span><br><span class="line">    <span class="keyword">this</span>-&gt;addChild(pNode_scene);</span><br></pre></td></tr></table></figure></p>
-<p>&#160;&#160;&#160;&#160;我们可以看看cocosstudio中的节点状态树就可以理解接下来的操作，<br><img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_046f71b7df79e40.png" alt=""></p>
-<p>&#160;&#160;&#160;&#160;从父子关系我们可以看出：  <strong>scene节点下有bg节点，而bg节点下则是其他的所有节点。</strong>    </p>
-<p>&#160;&#160;&#160;&#160;我们分别获取其中的兔子节点和障碍节点方便后面逻辑层对它们的操作:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取所有子节点</span></span><br><span class="line">    m_pNodes= pNode_scene-&gt;getChildByName(<span class="string">"Sprite_bg"</span>);</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//分别的到兔子和障碍节点</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it = m_pNodes-&gt;getChildren().begin(); it!=m_pNodes-&gt;getChildren().end(); it++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((*it)-&gt;getName()==<span class="string">"Sprite_Rabbit"</span>) &#123;</span><br><span class="line">            m_pNode_rabbit = (*it);</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            m_pNodes_obstacle.pushBack((*it));</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>&#160;&#160;&#160;&#160; 其实更多关于两者的联系，大家可以看下本站关于cocostduio的教程,链接:<a href="http://www.cocoachina.com/bbs/read.php?tid-265757.html" target="_blank" rel="external">http://www.cocoachina.com/bbs/read.php?tid-265757.html</a>以及更好的就是多去阅读官方给的例子的源码。  </p>
-<p>&#160;&#160;&#160;&#160;最后，我们还需要调整一下设计的分辨率，因为本人用的是5s，所以是按照它的分辨率来设计的。这部分我直接贴代码.如果不懂的，找些教程来看吧:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//屏幕缩放因子</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> CONFIG_SCALEFACTOR = <span class="number">2</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//实际资源规格</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> RESOURCE_BG_WIDTH = <span class="number">640</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> RESOURCE_BG_HEIGHT = <span class="number">1137</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">bool</span> AppDelegate::applicationDidFinishLaunching() &#123;</span><br><span class="line">    <span class="comment">// initialize director</span></span><br><span class="line">    <span class="keyword">auto</span> director = Director::getInstance();</span><br><span class="line">    <span class="keyword">auto</span> glview = director-&gt;getOpenGLView();</span><br><span class="line">    <span class="keyword">if</span>(!glview) &#123;</span><br><span class="line">        glview = GLViewImpl::create(<span class="string">"My Game"</span>);</span><br><span class="line">        glview-&gt;setFrameSize(RESOURCE_BG_WIDTH/CONFIG_SCALEFACTOR, RESOURCE_BG_HEIGHT/CONFIG_SCALEFACTOR);</span><br><span class="line">        director-&gt;setOpenGLView(glview);</span><br><span class="line">        glview-&gt;setDesignResolutionSize(RESOURCE_BG_WIDTH, RESOURCE_BG_HEIGHT, ResolutionPolicy::FIXED_HEIGHT);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// turn on display FPS</span></span><br><span class="line">    director-&gt;setDisplayStats(<span class="literal">true</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// set FPS. the default value is 1.0/60 if you don't call this</span></span><br><span class="line">    director-&gt;setAnimationInterval(<span class="number">1.0</span> / <span class="number">60</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// create a scene. it's an autorelease object</span></span><br><span class="line">    <span class="keyword">auto</span> scene = HelloWorld::createScene();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// run</span></span><br><span class="line">    director-&gt;runWithScene(scene);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p> &#160;&#160;&#160;&#160;此时，再编译运行程序就可以看到:<br> <img src="http://cdn.cocimg.com/bbs/attachment/Fid_41/41_300356_42a35dc4b3e8e8c.png" alt="">  </p>
-<p> &#160;&#160;&#160;&#160;游戏界面已经搭建好了！！！</p>
-<hr>
-<h1 id="u4E09_u3001_u5982_u4F55_u6DFB_u52A0_u5B9E_u73B0_u6DFB_u52A0_u969C_u788D_u7269"><a href="#u4E09_u3001_u5982_u4F55_u6DFB_u52A0_u5B9E_u73B0_u6DFB_u52A0_u969C_u788D_u7269" class="headerlink" title="三、如何添加实现添加障碍物"></a>三、如何添加实现添加障碍物</h1><p>&#160;&#160;&#160;&#160;界面搭好了过后，其实如何实现点击障碍物实现添加呢？其实也很简单了，首先我们写一个触摸事件回调函数。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">onTouchBeganCallBack</span><span class="params">(cocos2d::Touch* t,cocos2d::Event* event)</span></span>;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">bool</span> HelloWorld::onTouchBeganCallBack(Touch *t, Event* event)&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it =m_pNodes_obstacle.begin();it!=m_pNodes_obstacle.end() ; it++) &#123;</span><br><span class="line">        <span class="keyword">if</span>((*it)-&gt;getBoundingBox().containsPoint(t-&gt;getLocation())&amp;&amp;(!(*it)-&gt;isVisible()))&#123;</span><br><span class="line">            <span class="comment">//add obt</span></span><br><span class="line">            <span class="keyword">auto</span> pObt = (*it);</span><br><span class="line">            pObt-&gt;setVisible(<span class="literal">true</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&#160;&#160;&#160;&#160;最后再在init方法中添加触摸事件的监听，代码如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加监听</span></span><br><span class="line">    <span class="keyword">auto</span> listener = EventListenerTouchOneByOne::create();</span><br><span class="line">    listener-&gt;onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBeganCallBack,<span class="keyword">this</span>);</span><br><span class="line">    Director::getInstance()-&gt;getEventDispatcher()-&gt;addEventListenerWithSceneGraphPriority(listener, <span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
-<p>&#160;&#160;&#160;&#160;<strong>这里利用的原理简而言之就是之前我们在cocosstudio中把所有障碍物设置为不可见，然后遍历当前的触摸点在哪个障碍物的范围内，就将其可见性设置为可见。</strong>完成之后，再次编译运行我们就可以自由的添加障碍了。  </p>
-<hr>
-<h1 id="u56DB_u3001_u6700_u540E_u8BF4_u4E24_u53E5"><a href="#u56DB_u3001_u6700_u540E_u8BF4_u4E24_u53E5" class="headerlink" title="四、最后说两句"></a>四、最后说两句</h1><ul>
-<li><p><strong>此次上传我上传的文件和上次差不多主要是这次的源代码和cocosstudio资源文件夹，使用方法请见上次教程。</strong> </p>
-</li>
-<li><p><strong>附件地址：<a href="http://pan.baidu.com/s/1mgGD0U0" target="_blank" rel="external">http://pan.baidu.com/s/1mgGD0U0</a>, 密码：tec0</strong></p>
-</li>
 </ul>
 
       
